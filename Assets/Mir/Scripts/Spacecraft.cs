@@ -56,7 +56,7 @@ public class Spacecraft : MonoBehaviour
             rotation -= 0.00001f;
         }
         
-        Debug.Log(rotation);
+        //Debug.Log(rotation);
 
 
         rb.AddForceAtPosition(e1.rotation * Vector3.back * rotation, e1.position, ForceMode.Impulse);
