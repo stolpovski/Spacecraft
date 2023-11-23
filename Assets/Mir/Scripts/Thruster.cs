@@ -3,24 +3,38 @@ using UnityEngine;
 
 public class Thruster : MonoBehaviour
 {
+    [SerializeField] float maxForce = 0.01f;
+    [SerializeField] float deltaForce = 0.0001f;
+
     bool isRunning;
     float force;
-    float maxForce = 0.01f;
-    float deltaForce = 0.0001f;
+    ParticleSystem vfx;
 
-    public float GetForce()
+    private void Awake()
     {
-        return force;
+        vfx = GetComponent<ParticleSystem>();
+    }
+
+    public Vector3 GetForce()
+    {
+        return transform.rotation * Vector3.back * force;
+    }
+
+    public Vector3 GetPosition()
+    {
+        return transform.position;
     }
     
     public void TurnOn()
     {
+        vfx.Play();
         isRunning = true;
         StartCoroutine(ForceUp());
     }
 
     public void TurnOff()
     {
+        vfx.Stop();
         isRunning = false;
         StartCoroutine(ForceDown());
     }

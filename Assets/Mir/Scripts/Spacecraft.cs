@@ -2,32 +2,42 @@ using UnityEngine;
 
 public class Spacecraft : MonoBehaviour
 {
-    [SerializeField] Thruster bottomThruster;
+    [SerializeField] Thruster bottomLeftThruster;
+    [SerializeField] Thruster bottomRightThruster;
+    
     Rigidbody rb;
     Controls controls;
 
-    // Start is called before the first frame update
+    void InitControls()
+    {
+        controls = new Controls();
+
+        controls.Thrusters.Bottom.started += context =>
+        {
+            bottomLeftThruster.TurnOn();
+            bottomRightThruster.TurnOn();
+        };
+        
+        controls.Thrusters.Bottom.canceled += context =>
+        {
+            bottomLeftThruster.TurnOff();
+            bottomRightThruster.TurnOff();
+        };
+
+        controls.Thrusters.Enable();
+    }
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         
-        controls = new Controls();
-
-        controls.Thrusters.Bottom.started += context => bottomThruster.TurnOn();
-        controls.Thrusters.Bottom.canceled += context => bottomThruster.TurnOff();
-
-        controls.Thrusters.Enable();
+        InitControls();
     }
-
-
-
-
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
-
-        rb.AddForceAtPosition(bottomThruster.transform.rotation * Vector3.back * bottomThruster.GetForce(), bottomThruster.transform.position, ForceMode.Impulse);
-
+        rb.AddForceAtPosition(bottomLeftThruster.GetForce(), bottomLeftThruster.GetPosition(), ForceMode.Impulse);
+        rb.AddForceAtPosition(bottomRightThruster.GetForce(), bottomRightThruster.GetPosition(), ForceMode.Impulse);
     }
 }
