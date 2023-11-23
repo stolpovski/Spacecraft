@@ -132,8 +132,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 47016102}
+  - component: {fileID: 47016103}
   m_Layer: 0
-  m_Name: E1
+  m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -154,6 +155,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 419658914}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &47016103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47016101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203c0f8ca3386a74a9acfa0a0aeceece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &199637486
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,7 +826,7 @@ GameObject:
   m_Component:
   - component: {fileID: 419658914}
   m_Layer: 0
-  m_Name: Engine
+  m_Name: Thrusters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -985,7 +998,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 671366144}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.64362925, y: 0.00000010294914, z: -0.00000008657757, w: 0.7653375}
+  m_LocalRotation: {x: 0.6436293, y: 0.000000007908015, z: -0.0000000066504326, w: 0.76533747}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1113,7 +1126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949846095}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.65740764, y: 0.000000023374085, z: -0.000000020392282, w: 0.75353515}
+  m_LocalRotation: {x: 0.65740764, y: -0.000000023374085, z: 0.000000020392282, w: 0.75353515}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1131,6 +1144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1461642353}
   - component: {fileID: 1461642352}
+  - component: {fileID: 1461642354}
   m_Layer: 0
   m_Name: FreeLook Camera
   m_TagString: Untagged
@@ -1261,6 +1275,22 @@ Transform:
   - {fileID: 671366146}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1461642354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461642351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerIndex: -1
+  AutoEnableInputs: 1
+  XYAxis: {fileID: -5630151704836100654, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  ZAxis: {fileID: 0}
 --- !u!1001 &1925116694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1570,8 +1600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90cdc5ee9020694990093cc6023faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e1: {fileID: 47016102}
-  force: 0.001
+  bottomThruster: {fileID: 47016103}
 --- !u!54 &8023272815329280405
 Rigidbody:
   m_ObjectHideFlags: 0
