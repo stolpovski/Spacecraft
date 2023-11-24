@@ -4,6 +4,7 @@ public class Spacecraft : MonoBehaviour
 {
     [SerializeField] Thruster bottomLeftThruster;
     [SerializeField] Thruster bottomRightThruster;
+    [SerializeField] Thruster rightThruster;
     
     Rigidbody rb;
     Controls controls;
@@ -24,6 +25,16 @@ public class Spacecraft : MonoBehaviour
             bottomRightThruster.TurnOff();
         };
 
+        controls.Thrusters.Left.started += context =>
+        {
+            rightThruster.TurnOn();
+        };
+
+        controls.Thrusters.Left.canceled += context =>
+        {
+            rightThruster.TurnOff();
+        };
+
         controls.Thrusters.Enable();
     }
 
@@ -39,5 +50,6 @@ public class Spacecraft : MonoBehaviour
     {
         rb.AddForceAtPosition(bottomLeftThruster.GetForce(), bottomLeftThruster.GetPosition(), ForceMode.Impulse);
         rb.AddForceAtPosition(bottomRightThruster.GetForce(), bottomRightThruster.GetPosition(), ForceMode.Impulse);
+        rb.AddForceAtPosition(rightThruster.GetForce(), rightThruster.GetPosition(), ForceMode.Impulse);
     }
 }

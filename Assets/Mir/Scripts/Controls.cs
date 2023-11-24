@@ -35,6 +35,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""e1efdb10-2d29-4735-bda7-3da128f5d1b0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -59,6 +68,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Bottom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""003f593d-431c-4b8b-87b7-4516a83198d3"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -68,6 +88,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // Thrusters
         m_Thrusters = asset.FindActionMap("Thrusters", throwIfNotFound: true);
         m_Thrusters_Bottom = m_Thrusters.FindAction("Bottom", throwIfNotFound: true);
+        m_Thrusters_Left = m_Thrusters.FindAction("Left", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -130,11 +151,13 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Thrusters;
     private List<IThrustersActions> m_ThrustersActionsCallbackInterfaces = new List<IThrustersActions>();
     private readonly InputAction m_Thrusters_Bottom;
+    private readonly InputAction m_Thrusters_Left;
     public struct ThrustersActions
     {
         private @Controls m_Wrapper;
         public ThrustersActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Bottom => m_Wrapper.m_Thrusters_Bottom;
+        public InputAction @Left => m_Wrapper.m_Thrusters_Left;
         public InputActionMap Get() { return m_Wrapper.m_Thrusters; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -147,6 +170,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Bottom.started += instance.OnBottom;
             @Bottom.performed += instance.OnBottom;
             @Bottom.canceled += instance.OnBottom;
+            @Left.started += instance.OnLeft;
+            @Left.performed += instance.OnLeft;
+            @Left.canceled += instance.OnLeft;
         }
 
         private void UnregisterCallbacks(IThrustersActions instance)
@@ -154,6 +180,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Bottom.started -= instance.OnBottom;
             @Bottom.performed -= instance.OnBottom;
             @Bottom.canceled -= instance.OnBottom;
+            @Left.started -= instance.OnLeft;
+            @Left.performed -= instance.OnLeft;
+            @Left.canceled -= instance.OnLeft;
         }
 
         public void RemoveCallbacks(IThrustersActions instance)
@@ -174,5 +203,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface IThrustersActions
     {
         void OnBottom(InputAction.CallbackContext context);
+        void OnLeft(InputAction.CallbackContext context);
     }
 }

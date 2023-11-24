@@ -35,6 +35,7 @@ public class Thruster : MonoBehaviour
     public void TurnOff()
     {
         vfx.Stop();
+        vfx.Clear();
         isRunning = false;
         StartCoroutine(ForceDown());
     }
