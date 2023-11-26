@@ -6,8 +6,8 @@ public class Thruster : MonoBehaviour
     [SerializeField] float maxForce = 0.01f;
     [SerializeField] float deltaForce = 0.0001f;
 
-    bool isRunning;
     float force;
+    bool isRunning;
     ParticleSystem vfx;
 
     private void Awake()

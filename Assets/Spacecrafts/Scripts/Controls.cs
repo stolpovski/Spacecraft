@@ -81,6 +81,34 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Camera"",
+            ""id"": ""dc0d112d-acfd-4706-beed-6e1291a2dd9d"",
+            ""actions"": [
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""e7f55e2a-51b0-403d-842a-eb448a4289f9"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": ""ScaleVector2(x=0.1,y=0.1)"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""09143c72-aa89-44ff-afdb-8f330fe7ff80"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -89,6 +117,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Thrusters = asset.FindActionMap("Thrusters", throwIfNotFound: true);
         m_Thrusters_Bottom = m_Thrusters.FindAction("Bottom", throwIfNotFound: true);
         m_Thrusters_Left = m_Thrusters.FindAction("Left", throwIfNotFound: true);
+        // Camera
+        m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
+        m_Camera_Look = m_Camera.FindAction("Look", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -200,9 +231,59 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     }
     public ThrustersActions @Thrusters => new ThrustersActions(this);
+
+    // Camera
+    private readonly InputActionMap m_Camera;
+    private List<ICameraActions> m_CameraActionsCallbackInterfaces = new List<ICameraActions>();
+    private readonly InputAction m_Camera_Look;
+    public struct CameraActions
+    {
+        private @Controls m_Wrapper;
+        public CameraActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Look => m_Wrapper.m_Camera_Look;
+        public InputActionMap Get() { return m_Wrapper.m_Camera; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CameraActions set) { return set.Get(); }
+        public void AddCallbacks(ICameraActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CameraActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CameraActionsCallbackInterfaces.Add(instance);
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
+        }
+
+        private void UnregisterCallbacks(ICameraActions instance)
+        {
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
+        }
+
+        public void RemoveCallbacks(ICameraActions instance)
+        {
+            if (m_Wrapper.m_CameraActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICameraActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CameraActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CameraActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CameraActions @Camera => new CameraActions(this);
     public interface IThrustersActions
     {
         void OnBottom(InputAction.CallbackContext context);
         void OnLeft(InputAction.CallbackContext context);
+    }
+    public interface ICameraActions
+    {
+        void OnLook(InputAction.CallbackContext context);
     }
 }
