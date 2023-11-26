@@ -6,27 +6,18 @@
             "id": "686eea95-8068-4b17-aa45-3d2d06e87b7d",
             "actions": [
                 {
-                    "name": "RollLeft",
-                    "type": "PassThrough",
-                    "id": "e1efdb10-2d29-4735-bda7-3da128f5d1b0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "RollRight",
-                    "type": "PassThrough",
-                    "id": "2c1c3c7e-b2f7-4f4b-aebe-a2ed4b2d210d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Pitch",
                     "type": "PassThrough",
                     "id": "a4ddfea9-ad1e-4efe-b621-87c73eb665d9",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Roll",
+                    "type": "PassThrough",
+                    "id": "97e103bb-d2c2-4385-a828-823330cb96c4",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "Press(behavior=2)",
@@ -43,28 +34,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "003f593d-431c-4b8b-87b7-4516a83198d3",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RollLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bb326a50-6514-4be1-8954-a90c06fb341c",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RollRight",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "1D Axis",
                     "id": "23681bed-1c23-46f0-9ad3-1de31c568150",
@@ -128,6 +97,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Yaw",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "d63d0bca-67e0-4d26-921a-dc58edc6dc8f",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "e76efb01-e92d-48b7-9f23-69174825cff6",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "8f8aabcd-0aae-40ef-82f3-c9320eb7045e",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

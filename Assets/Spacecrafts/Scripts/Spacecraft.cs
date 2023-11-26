@@ -11,6 +11,11 @@ public class Spacecraft : MonoBehaviour
     [SerializeField] Thruster rightUpThruster;
     [SerializeField] Thruster leftUpThruster;
     [SerializeField] Thruster leftDownThruster;
+
+    [SerializeField] Thruster leftTopThruster;
+    [SerializeField] Thruster leftBottomThruster;
+    [SerializeField] Thruster rightTopThruster;
+    [SerializeField] Thruster rightBottomThruster;
     
     Rigidbody rb;
     Controls controls;
@@ -22,29 +27,8 @@ public class Spacecraft : MonoBehaviour
         controls.Spacecraft.Pitch.started += StartPitch;
         controls.Spacecraft.Pitch.canceled += StopPitch;
 
-        controls.Spacecraft.RollLeft.started += context =>
-        {
-            rightDownThruster.TurnOn();
-            leftUpThruster.TurnOn();
-        };
-
-        controls.Spacecraft.RollLeft.canceled += context =>
-        {
-            rightDownThruster.TurnOff();
-            leftUpThruster.TurnOff();
-        };
-
-        controls.Spacecraft.RollRight.started += context =>
-        {
-            rightUpThruster.TurnOn();
-            leftDownThruster.TurnOn();
-        };
-
-        controls.Spacecraft.RollRight.canceled += context =>
-        {
-            rightUpThruster.TurnOff();
-            leftDownThruster.TurnOff();
-        };
+        controls.Spacecraft.Roll.started += StartRoll;
+        controls.Spacecraft.Roll.canceled += StopRoll;
 
         controls.Spacecraft.Yaw.started += StartYaw;
         controls.Spacecraft.Yaw.canceled += StopYaw;
@@ -90,7 +74,10 @@ public class Spacecraft : MonoBehaviour
 
     void Yaw()
     {
-
+        AddForce(leftTopThruster);
+        AddForce(leftBottomThruster);
+        AddForce(rightTopThruster);
+        AddForce(rightBottomThruster);
     }
 
     void StartPitch(InputAction.CallbackContext context)
@@ -118,13 +105,53 @@ public class Spacecraft : MonoBehaviour
         topRightThruster.TurnOff();
     }
 
+    void StartRoll(InputAction.CallbackContext context)
+    {
+        float roll = context.ReadValue<float>();
+
+        if (roll > 0)
+        {
+            rightUpThruster.TurnOn();
+            leftDownThruster.TurnOn();
+        }
+
+        if (roll < 0)
+        {
+            rightDownThruster.TurnOn();
+            leftUpThruster.TurnOn();
+        }
+    }
+
+    void StopRoll(InputAction.CallbackContext context)
+    {
+        rightDownThruster.TurnOff();
+        leftUpThruster.TurnOff();
+        rightUpThruster.TurnOff();
+        leftDownThruster.TurnOff();
+    }
+
     void StartYaw(InputAction.CallbackContext context)
     {
-        Debug.Log("Yaw started" + context.ReadValue<float>());
+        float yaw = context.ReadValue<float>();
+
+        if (yaw > 0)
+        {
+            rightTopThruster.TurnOn();
+            rightBottomThruster.TurnOn();
+        }
+
+        if (yaw < 0)
+        {
+            leftTopThruster.TurnOn();
+            leftBottomThruster.TurnOn();
+        }
     }
 
     void StopYaw(InputAction.CallbackContext context)
     {
-        Debug.Log("Yaw stopped");
+        rightTopThruster.TurnOff();
+        rightBottomThruster.TurnOff();
+        leftTopThruster.TurnOff();
+        leftBottomThruster.TurnOff();
     }
 }
