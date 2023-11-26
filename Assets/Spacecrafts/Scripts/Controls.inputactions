@@ -2,23 +2,41 @@
     "name": "Controls",
     "maps": [
         {
-            "name": "Thrusters",
+            "name": "Spacecraft",
             "id": "686eea95-8068-4b17-aa45-3d2d06e87b7d",
             "actions": [
                 {
-                    "name": "Bottom",
+                    "name": "RollLeft",
                     "type": "PassThrough",
-                    "id": "b15543f6-4504-4c7b-8e13-4ebc383abeff",
+                    "id": "e1efdb10-2d29-4735-bda7-3da128f5d1b0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Left",
+                    "name": "RollRight",
                     "type": "PassThrough",
-                    "id": "e1efdb10-2d29-4735-bda7-3da128f5d1b0",
+                    "id": "2c1c3c7e-b2f7-4f4b-aebe-a2ed4b2d210d",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pitch",
+                    "type": "PassThrough",
+                    "id": "a4ddfea9-ad1e-4efe-b621-87c73eb665d9",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Yaw",
+                    "type": "PassThrough",
+                    "id": "a4fb5a5f-d6f6-40f4-836e-b1f33c3dba13",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
@@ -27,36 +45,91 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "a1e9a8b7-9941-44d4-9e05-891214a3f45b",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Bottom",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3de22fa2-3a76-476d-9869-2dddf1fea385",
-                    "path": "<Gamepad>/leftStick/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Bottom",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "003f593d-431c-4b8b-87b7-4516a83198d3",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Left",
+                    "action": "RollLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb326a50-6514-4be1-8954-a90c06fb341c",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RollRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "23681bed-1c23-46f0-9ad3-1de31c568150",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pitch",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "441bc65c-3f75-48ce-822d-ac38546fc7c1",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pitch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "6b83099f-bbff-4c06-b34c-fe9d63c0f382",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pitch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "895c5da5-80af-4d1e-9ac3-641dea24b862",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "8c19072c-6a1c-4e50-9bb1-bac9c9143ced",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "23e0c8d6-d90b-4540-aaa1-e65b5352d09c",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

@@ -9,10 +9,12 @@ public class Thruster : MonoBehaviour
     float force;
     bool isRunning;
     ParticleSystem vfx;
+    AudioSource sfx;
 
     private void Awake()
     {
         vfx = GetComponent<ParticleSystem>();
+        sfx = GetComponent<AudioSource>();
     }
 
     public Vector3 GetForce()
@@ -28,6 +30,7 @@ public class Thruster : MonoBehaviour
     public void TurnOn()
     {
         vfx.Play();
+        sfx.Play();
         isRunning = true;
         StartCoroutine(ForceUp());
     }
@@ -36,6 +39,7 @@ public class Thruster : MonoBehaviour
     {
         vfx.Stop();
         vfx.Clear();
+        sfx.Stop();
         isRunning = false;
         StartCoroutine(ForceDown());
     }

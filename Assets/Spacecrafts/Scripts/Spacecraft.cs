@@ -1,10 +1,16 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Spacecraft : MonoBehaviour
 {
     [SerializeField] Thruster bottomLeftThruster;
+    [SerializeField] Thruster topLeftThruster;
     [SerializeField] Thruster bottomRightThruster;
-    [SerializeField] Thruster rightThruster;
+    [SerializeField] Thruster topRightThruster;
+    [SerializeField] Thruster rightDownThruster;
+    [SerializeField] Thruster rightUpThruster;
+    [SerializeField] Thruster leftUpThruster;
+    [SerializeField] Thruster leftDownThruster;
     
     Rigidbody rb;
     Controls controls;
@@ -13,29 +19,37 @@ public class Spacecraft : MonoBehaviour
     {
         controls = new Controls();
 
-        controls.Thrusters.Bottom.started += context =>
+        controls.Spacecraft.Pitch.started += StartPitch;
+        controls.Spacecraft.Pitch.canceled += StopPitch;
+
+        controls.Spacecraft.RollLeft.started += context =>
         {
-            bottomLeftThruster.TurnOn();
-            bottomRightThruster.TurnOn();
-        };
-        
-        controls.Thrusters.Bottom.canceled += context =>
-        {
-            bottomLeftThruster.TurnOff();
-            bottomRightThruster.TurnOff();
+            rightDownThruster.TurnOn();
+            leftUpThruster.TurnOn();
         };
 
-        controls.Thrusters.Left.started += context =>
+        controls.Spacecraft.RollLeft.canceled += context =>
         {
-            rightThruster.TurnOn();
+            rightDownThruster.TurnOff();
+            leftUpThruster.TurnOff();
         };
 
-        controls.Thrusters.Left.canceled += context =>
+        controls.Spacecraft.RollRight.started += context =>
         {
-            rightThruster.TurnOff();
+            rightUpThruster.TurnOn();
+            leftDownThruster.TurnOn();
         };
 
-        controls.Thrusters.Enable();
+        controls.Spacecraft.RollRight.canceled += context =>
+        {
+            rightUpThruster.TurnOff();
+            leftDownThruster.TurnOff();
+        };
+
+        controls.Spacecraft.Yaw.started += StartYaw;
+        controls.Spacecraft.Yaw.canceled += StopYaw;
+
+        controls.Spacecraft.Enable();
     }
 
     void Awake()
@@ -48,8 +62,69 @@ public class Spacecraft : MonoBehaviour
     
     void FixedUpdate()
     {
-        rb.AddForceAtPosition(bottomLeftThruster.GetForce(), bottomLeftThruster.GetPosition(), ForceMode.Impulse);
-        rb.AddForceAtPosition(bottomRightThruster.GetForce(), bottomRightThruster.GetPosition(), ForceMode.Impulse);
-        rb.AddForceAtPosition(rightThruster.GetForce(), rightThruster.GetPosition(), ForceMode.Impulse);
+        Pitch();
+        Roll();
+        Yaw();
+    }
+
+    void AddForce(Thruster thruster)
+    {
+        rb.AddForceAtPosition(thruster.GetForce(), thruster.GetPosition(), ForceMode.Impulse);
+    }
+
+    void Pitch()
+    {
+        AddForce(bottomLeftThruster);
+        AddForce(bottomRightThruster);
+        AddForce(topLeftThruster);
+        AddForce(topRightThruster);
+    }
+
+    void Roll()
+    {
+        AddForce(rightDownThruster);
+        AddForce(leftUpThruster);
+        AddForce(rightUpThruster);
+        AddForce(leftDownThruster);
+    }
+
+    void Yaw()
+    {
+
+    }
+
+    void StartPitch(InputAction.CallbackContext context)
+    {
+        float pitch = context.ReadValue<float>();
+
+        if (pitch > 0)
+        {
+            bottomLeftThruster.TurnOn();
+            bottomRightThruster.TurnOn();
+        }
+
+        if (pitch < 0)
+        {
+            topLeftThruster.TurnOn();
+            topRightThruster.TurnOn();
+        }
+    }
+
+    void StopPitch(InputAction.CallbackContext context)
+    {
+        bottomLeftThruster.TurnOff();
+        bottomRightThruster.TurnOff();
+        topLeftThruster.TurnOff();
+        topRightThruster.TurnOff();
+    }
+
+    void StartYaw(InputAction.CallbackContext context)
+    {
+        Debug.Log("Yaw started" + context.ReadValue<float>());
+    }
+
+    void StopYaw(InputAction.CallbackContext context)
+    {
+        Debug.Log("Yaw stopped");
     }
 }
