@@ -1,21 +1,10 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Spacecraft : MonoBehaviour
 {
-    [SerializeField] Thruster bottomLeftThruster;
-    [SerializeField] Thruster topLeftThruster;
-    [SerializeField] Thruster bottomRightThruster;
-    [SerializeField] Thruster topRightThruster;
-    [SerializeField] Thruster rightDownThruster;
-    [SerializeField] Thruster rightUpThruster;
-    [SerializeField] Thruster leftUpThruster;
-    [SerializeField] Thruster leftDownThruster;
-
-    [SerializeField] Thruster leftTopThruster;
-    [SerializeField] Thruster leftBottomThruster;
-    [SerializeField] Thruster rightTopThruster;
-    [SerializeField] Thruster rightBottomThruster;
+    [SerializeField] AxisThrusters pitchThrusters;
+    [SerializeField] AxisThrusters rollThrusters;
+    [SerializeField] AxisThrusters yawThrusters;
     
     Rigidbody rb;
     Controls controls;
@@ -24,14 +13,14 @@ public class Spacecraft : MonoBehaviour
     {
         controls = new Controls();
 
-        controls.Spacecraft.Pitch.started += StartPitch;
-        controls.Spacecraft.Pitch.canceled += StopPitch;
+        controls.Spacecraft.Pitch.started += context => StartThrusters(pitchThrusters, context.ReadValue<float>());
+        controls.Spacecraft.Pitch.canceled += context => StopThrusters(pitchThrusters);
 
-        controls.Spacecraft.Roll.started += StartRoll;
-        controls.Spacecraft.Roll.canceled += StopRoll;
+        controls.Spacecraft.Roll.started += context => StartThrusters(rollThrusters, context.ReadValue<float>());
+        controls.Spacecraft.Roll.canceled += context => StopThrusters(rollThrusters);
 
-        controls.Spacecraft.Yaw.started += StartYaw;
-        controls.Spacecraft.Yaw.canceled += StopYaw;
+        controls.Spacecraft.Yaw.started += context => StartThrusters(yawThrusters, context.ReadValue<float>());
+        controls.Spacecraft.Yaw.canceled += context => StopThrusters(yawThrusters);
 
         controls.Spacecraft.Enable();
     }
@@ -40,118 +29,59 @@ public class Spacecraft : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
-        
+
         InitControls();
     }
-    
+
+    void StartThrusters(AxisThrusters thrusters, float direction)
+    {
+        if (direction > 0)
+        {
+            foreach (var thruster in thrusters.positive)
+            {
+                thruster.TurnOn();
+            }
+        }
+
+        if (direction < 0)
+        {
+            foreach (var thruster in thrusters.negative)
+            {
+                thruster.TurnOn();
+            }
+        }
+    }
+
+    void StopThrusters(AxisThrusters thrusters)
+    {
+        foreach (var thruster in thrusters.positive)
+        {
+            thruster.TurnOff();
+        }
+
+        foreach (var thruster in thrusters.negative)
+        {
+            thruster.TurnOff();
+        }
+    }
+
+    void AddForces(AxisThrusters thrusters)
+    {
+        foreach (var thruster in thrusters.positive)
+        {
+            rb.AddForceAtPosition(thruster.GetForce(), thruster.GetPosition(), ForceMode.Impulse);
+        }
+
+        foreach (var thruster in thrusters.negative)
+        {
+            rb.AddForceAtPosition(thruster.GetForce(), thruster.GetPosition(), ForceMode.Impulse);
+        }
+    }
+
     void FixedUpdate()
     {
-        Pitch();
-        Roll();
-        Yaw();
-    }
-
-    void AddForce(Thruster thruster)
-    {
-        rb.AddForceAtPosition(thruster.GetForce(), thruster.GetPosition(), ForceMode.Impulse);
-    }
-
-    void Pitch()
-    {
-        AddForce(bottomLeftThruster);
-        AddForce(bottomRightThruster);
-        AddForce(topLeftThruster);
-        AddForce(topRightThruster);
-    }
-
-    void Roll()
-    {
-        AddForce(rightDownThruster);
-        AddForce(leftUpThruster);
-        AddForce(rightUpThruster);
-        AddForce(leftDownThruster);
-    }
-
-    void Yaw()
-    {
-        AddForce(leftTopThruster);
-        AddForce(leftBottomThruster);
-        AddForce(rightTopThruster);
-        AddForce(rightBottomThruster);
-    }
-
-    void StartPitch(InputAction.CallbackContext context)
-    {
-        float pitch = context.ReadValue<float>();
-
-        if (pitch > 0)
-        {
-            bottomLeftThruster.TurnOn();
-            bottomRightThruster.TurnOn();
-        }
-
-        if (pitch < 0)
-        {
-            topLeftThruster.TurnOn();
-            topRightThruster.TurnOn();
-        }
-    }
-
-    void StopPitch(InputAction.CallbackContext context)
-    {
-        bottomLeftThruster.TurnOff();
-        bottomRightThruster.TurnOff();
-        topLeftThruster.TurnOff();
-        topRightThruster.TurnOff();
-    }
-
-    void StartRoll(InputAction.CallbackContext context)
-    {
-        float roll = context.ReadValue<float>();
-
-        if (roll > 0)
-        {
-            rightUpThruster.TurnOn();
-            leftDownThruster.TurnOn();
-        }
-
-        if (roll < 0)
-        {
-            rightDownThruster.TurnOn();
-            leftUpThruster.TurnOn();
-        }
-    }
-
-    void StopRoll(InputAction.CallbackContext context)
-    {
-        rightDownThruster.TurnOff();
-        leftUpThruster.TurnOff();
-        rightUpThruster.TurnOff();
-        leftDownThruster.TurnOff();
-    }
-
-    void StartYaw(InputAction.CallbackContext context)
-    {
-        float yaw = context.ReadValue<float>();
-
-        if (yaw > 0)
-        {
-            rightTopThruster.TurnOn();
-            rightBottomThruster.TurnOn();
-        }
-
-        if (yaw < 0)
-        {
-            leftTopThruster.TurnOn();
-            leftBottomThruster.TurnOn();
-        }
-    }
-
-    void StopYaw(InputAction.CallbackContext context)
-    {
-        rightTopThruster.TurnOff();
-        rightBottomThruster.TurnOff();
-        leftTopThruster.TurnOff();
-        leftBottomThruster.TurnOff();
+        AddForces(pitchThrusters);
+        AddForces(rollThrusters);
+        AddForces(yawThrusters);
     }
 }

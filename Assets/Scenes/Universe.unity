@@ -332,7 +332,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018189494, y: 0.000000034407073, z: 6.2595074e-10, w: 0.9998346}
+  m_LocalRotation: {x: -0.018189494, y: -0.000000034407073, z: -6.2595074e-10, w: 0.9998346}
   m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1283,7 +1283,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949846095}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018189488, y: 0.000000017203536, z: 3.1297526e-10, w: 0.9998346}
+  m_LocalRotation: {x: -0.018189488, y: -0.000000017203536, z: -3.1297526e-10, w: 0.9998346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2483,18 +2483,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90cdc5ee9020694990093cc6023faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bottomLeftThruster: {fileID: 356797954}
-  topLeftThruster: {fileID: 1277589254}
-  bottomRightThruster: {fileID: 47016103}
-  topRightThruster: {fileID: 944236087}
-  rightDownThruster: {fileID: 75902279}
-  rightUpThruster: {fileID: 1602463486}
-  leftUpThruster: {fileID: 212837164}
-  leftDownThruster: {fileID: 1392143506}
-  leftTopThruster: {fileID: 1454037578}
-  leftBottomThruster: {fileID: 1533471524}
-  rightTopThruster: {fileID: 1152943241}
-  rightBottomThruster: {fileID: 776539732}
+  pitchThrusters:
+    negative:
+    - {fileID: 356797954}
+    - {fileID: 47016103}
+    positive:
+    - {fileID: 1277589254}
+    - {fileID: 944236087}
+  rollThrusters:
+    negative:
+    - {fileID: 212837164}
+    - {fileID: 75902279}
+    positive:
+    - {fileID: 1602463486}
+    - {fileID: 1392143506}
+  yawThrusters:
+    negative:
+    - {fileID: 1454037578}
+    - {fileID: 1533471524}
+    positive:
+    - {fileID: 776539732}
+    - {fileID: 1152943241}
 --- !u!54 &8023272815329280405
 Rigidbody:
   m_ObjectHideFlags: 0
