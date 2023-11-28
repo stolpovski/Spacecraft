@@ -11,7 +11,7 @@
                     "id": "a4ddfea9-ad1e-4efe-b621-87c73eb665d9",
                     "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "Press(pressPoint=0.1,behavior=2)",
                     "initialStateCheck": false
                 },
                 {
@@ -20,7 +20,7 @@
                     "id": "97e103bb-d2c2-4385-a828-823330cb96c4",
                     "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "Press(pressPoint=0.1,behavior=2)",
                     "initialStateCheck": false
                 },
                 {
@@ -29,7 +29,7 @@
                     "id": "a4fb5a5f-d6f6-40f4-836e-b1f33c3dba13",
                     "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "Press(pressPoint=0.1,behavior=2)",
                     "initialStateCheck": false
                 }
             ],
@@ -60,6 +60,39 @@
                     "name": "positive",
                     "id": "6b83099f-bbff-4c06-b34c-fe9d63c0f382",
                     "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pitch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "1710d238-51a5-4e43-bdd3-60008179d6d7",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pitch",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "2486889b-0987-4988-abea-f91449a10bf0",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pitch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "24723ccd-f125-47cc-8b3a-5f5102447f9c",
+                    "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -102,6 +135,39 @@
                 },
                 {
                     "name": "1D Axis",
+                    "id": "e85187ec-994d-49d7-93af-d7a318d8e2b7",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "bd7bdf58-6ee1-47d6-816b-93e360267757",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "a3af61ec-9653-441a-af34-524105b8c3bf",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
                     "id": "d63d0bca-67e0-4d26-921a-dc58edc6dc8f",
                     "path": "1DAxis",
                     "interactions": "",
@@ -132,6 +198,39 @@
                     "action": "Roll",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "e79571da-5aad-414e-9c98-05e28d726361",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "351e1a18-6280-44c1-a207-47466dbea2c0",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "8ff077cc-48fb-4950-93b8-3c981e7bf04f",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
@@ -144,7 +243,7 @@
                     "type": "Value",
                     "id": "e7f55e2a-51b0-403d-842a-eb448a4289f9",
                     "expectedControlType": "Vector2",
-                    "processors": "ScaleVector2(x=0.1,y=0.1)",
+                    "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 }
@@ -155,7 +254,18 @@
                     "id": "09143c72-aa89-44ff-afdb-8f330fe7ff80",
                     "path": "<Pointer>/delta",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=0.1,y=0.1)",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d54ad86-7892-440a-bfd8-dcc3641d172a",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=0.5,y=0.5)",
                     "groups": "",
                     "action": "Look",
                     "isComposite": false,

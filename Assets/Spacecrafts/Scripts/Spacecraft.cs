@@ -35,6 +35,7 @@ public class Spacecraft : MonoBehaviour
 
     void StartThrusters(AxisThrusters thrusters, float direction)
     {
+        Debug.Log("started " + direction);
         if (direction > 0)
         {
             foreach (var thruster in thrusters.positive)
@@ -54,6 +55,7 @@ public class Spacecraft : MonoBehaviour
 
     void StopThrusters(AxisThrusters thrusters)
     {
+        Debug.Log("stopped");
         foreach (var thruster in thrusters.positive)
         {
             thruster.TurnOff();
