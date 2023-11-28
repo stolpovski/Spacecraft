@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class Thruster : MonoBehaviour
 {
+    [SerializeField] float force;
     [SerializeField] float maxForce = 0.01f;
     [SerializeField] float deltaForce = 0.0001f;
 
-    float force;
     bool isRunning;
+    
     ParticleSystem vfx;
     AudioSource sfx;
 
@@ -15,6 +16,11 @@ public class Thruster : MonoBehaviour
     {
         vfx = GetComponent<ParticleSystem>();
         sfx = GetComponent<AudioSource>();
+    }
+
+    public bool IsRunning()
+    {
+        return isRunning;
     }
 
     public Vector3 GetForce()

@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203c0f8ca3386a74a9acfa0a0aeceece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  force: 0
   maxForce: 0.01
   deltaForce: 0.0001
 --- !u!198 &4711397416207310980

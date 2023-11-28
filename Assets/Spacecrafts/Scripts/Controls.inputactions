@@ -9,27 +9,27 @@
                     "name": "Pitch",
                     "type": "PassThrough",
                     "id": "a4ddfea9-ad1e-4efe-b621-87c73eb665d9",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(pressPoint=0.1,behavior=2)",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
                     "name": "Roll",
                     "type": "PassThrough",
                     "id": "97e103bb-d2c2-4385-a828-823330cb96c4",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(pressPoint=0.1,behavior=2)",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
                     "name": "Yaw",
                     "type": "PassThrough",
                     "id": "a4fb5a5f-d6f6-40f4-836e-b1f33c3dba13",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(pressPoint=0.1,behavior=2)",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],

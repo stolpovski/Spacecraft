@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Spacecraft : MonoBehaviour
 {
@@ -7,64 +8,44 @@ public class Spacecraft : MonoBehaviour
     [SerializeField] AxisThrusters yawThrusters;
     
     Rigidbody rb;
-    Controls controls;
-
-    void InitControls()
-    {
-        controls = new Controls();
-
-        controls.Spacecraft.Pitch.started += context => StartThrusters(pitchThrusters, context.ReadValue<float>());
-        controls.Spacecraft.Pitch.canceled += context => StopThrusters(pitchThrusters);
-
-        controls.Spacecraft.Roll.started += context => StartThrusters(rollThrusters, context.ReadValue<float>());
-        controls.Spacecraft.Roll.canceled += context => StopThrusters(rollThrusters);
-
-        controls.Spacecraft.Yaw.started += context => StartThrusters(yawThrusters, context.ReadValue<float>());
-        controls.Spacecraft.Yaw.canceled += context => StopThrusters(yawThrusters);
-
-        controls.Spacecraft.Enable();
-    }
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
-
-        InitControls();
+        rb = GetComponent<Rigidbody>();
     }
 
-    void StartThrusters(AxisThrusters thrusters, float direction)
+    void Rotate(AxisThrusters thrusters, float rotation)
     {
-        Debug.Log("started " + direction);
-        if (direction > 0)
+        if (rotation > 0)
         {
-            foreach (var thruster in thrusters.positive)
-            {
-                thruster.TurnOn();
-            }
+            thrusters.TurnOnPositiveThrusters();
         }
 
-        if (direction < 0)
+        if (rotation < 0)
         {
-            foreach (var thruster in thrusters.negative)
-            {
-                thruster.TurnOn();
-            }
+            thrusters.TurnOnNegativeThrusters();
+        }
+
+        if (rotation == 0)
+        {
+            thrusters.TurnOfRunningThrusters();
         }
     }
 
-    void StopThrusters(AxisThrusters thrusters)
+    public void OnPitch(InputAction.CallbackContext context)
     {
-        Debug.Log("stopped");
-        foreach (var thruster in thrusters.positive)
-        {
-            thruster.TurnOff();
-        }
+        Rotate(pitchThrusters, context.ReadValue<float>());
+    }
 
-        foreach (var thruster in thrusters.negative)
-        {
-            thruster.TurnOff();
-        }
+    public void OnRoll(InputAction.CallbackContext context)
+    {
+        Rotate(rollThrusters, context.ReadValue<float>());
+    }
+
+    public void OnYaw(InputAction.CallbackContext context)
+    {
+        Rotate(yawThrusters, context.ReadValue<float>());
     }
 
     void AddForces(AxisThrusters thrusters)

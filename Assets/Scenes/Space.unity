@@ -837,8 +837,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 356797951}
-  - {fileID: 1277589250}
   - {fileID: 47016102}
+  - {fileID: 1277589250}
   - {fileID: 944236083}
   - {fileID: 75902278}
   - {fileID: 1392143505}
@@ -1910,6 +1910,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 419658914}
     m_Modifications:
+    - target: {fileID: 868917689026356294, guid: bcf0ce4f865e18f4a8781076052eaca9,
+        type: 3}
+      propertyPath: deltaForce
+      value: 0.0001
+      objectReference: {fileID: 0}
     - target: {fileID: 1060396955300110717, guid: bcf0ce4f865e18f4a8781076052eaca9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2329,6 +2334,7 @@ GameObject:
   - component: {fileID: 5110510638314588926}
   - component: {fileID: 8023272815329280404}
   - component: {fileID: 8023272815329280405}
+  - component: {fileID: 8023272815329280406}
   m_Layer: 0
   m_Name: Soyuz
   m_TagString: Untagged
@@ -2344,6 +2350,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 419658914}
     m_Modifications:
+    - target: {fileID: 868917689026356294, guid: bcf0ce4f865e18f4a8781076052eaca9,
+        type: 3}
+      propertyPath: deltaForce
+      value: 0.0001
+      objectReference: {fileID: 0}
     - target: {fileID: 1060396955300110717, guid: bcf0ce4f865e18f4a8781076052eaca9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2531,6 +2542,89 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8023272815329280406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310198263861657172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: a311aebe753361844b2aa1f1115171f2,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8023272815329280404}
+        m_TargetAssemblyTypeName: Spacecraft, Assembly-CSharp
+        m_MethodName: OnPitch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a4ddfea9-ad1e-4efe-b621-87c73eb665d9
+    m_ActionName: Spacecraft/Pitch[/Keyboard/w,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8023272815329280404}
+        m_TargetAssemblyTypeName: Spacecraft, Assembly-CSharp
+        m_MethodName: OnRoll
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 97e103bb-d2c2-4385-a828-823330cb96c4
+    m_ActionName: Spacecraft/Roll[/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8023272815329280404}
+        m_TargetAssemblyTypeName: Spacecraft, Assembly-CSharp
+        m_MethodName: OnYaw
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a4fb5a5f-d6f6-40f4-836e-b1f33c3dba13
+    m_ActionName: Spacecraft/Yaw[/Keyboard/q,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e7f55e2a-51b0-403d-842a-eb448a4289f9
+    m_ActionName: Camera/Look[/Mouse/delta]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Spacecraft
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
