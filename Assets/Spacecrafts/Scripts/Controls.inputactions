@@ -15,18 +15,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Roll",
+                    "name": "Yaw",
                     "type": "PassThrough",
-                    "id": "97e103bb-d2c2-4385-a828-823330cb96c4",
+                    "id": "a4fb5a5f-d6f6-40f4-836e-b1f33c3dba13",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Yaw",
+                    "name": "Roll",
                     "type": "PassThrough",
-                    "id": "a4fb5a5f-d6f6-40f4-836e-b1f33c3dba13",
+                    "id": "97e103bb-d2c2-4385-a828-823330cb96c4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -102,72 +102,6 @@
                 },
                 {
                     "name": "1D Axis",
-                    "id": "895c5da5-80af-4d1e-9ac3-641dea24b862",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Yaw",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "8c19072c-6a1c-4e50-9bb1-bac9c9143ced",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Yaw",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "23e0c8d6-d90b-4540-aaa1-e65b5352d09c",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Yaw",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "e85187ec-994d-49d7-93af-d7a318d8e2b7",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Yaw",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "bd7bdf58-6ee1-47d6-816b-93e360267757",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Yaw",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "a3af61ec-9653-441a-af34-524105b8c3bf",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Yaw",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "1D Axis",
                     "id": "d63d0bca-67e0-4d26-921a-dc58edc6dc8f",
                     "path": "1DAxis",
                     "interactions": "",
@@ -180,7 +114,7 @@
                 {
                     "name": "negative",
                     "id": "e76efb01-e92d-48b7-9f23-69174825cff6",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -191,7 +125,7 @@
                 {
                     "name": "positive",
                     "id": "8f8aabcd-0aae-40ef-82f3-c9320eb7045e",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -213,7 +147,7 @@
                 {
                     "name": "negative",
                     "id": "351e1a18-6280-44c1-a207-47466dbea2c0",
-                    "path": "<Gamepad>/leftStick/left",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -224,11 +158,77 @@
                 {
                     "name": "positive",
                     "id": "8ff077cc-48fb-4950-93b8-3c981e7bf04f",
-                    "path": "<Gamepad>/leftStick/right",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "895c5da5-80af-4d1e-9ac3-641dea24b862",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "8c19072c-6a1c-4e50-9bb1-bac9c9143ced",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "23e0c8d6-d90b-4540-aaa1-e65b5352d09c",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "e85187ec-994d-49d7-93af-d7a318d8e2b7",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "bd7bdf58-6ee1-47d6-816b-93e360267757",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "a3af61ec-9653-441a-af34-524105b8c3bf",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Yaw",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

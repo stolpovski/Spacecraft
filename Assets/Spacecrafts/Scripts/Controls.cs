@@ -37,18 +37,18 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Roll"",
+                    ""name"": ""Yaw"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""97e103bb-d2c2-4385-a828-823330cb96c4"",
+                    ""id"": ""a4fb5a5f-d6f6-40f4-836e-b1f33c3dba13"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Yaw"",
+                    ""name"": ""Roll"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""a4fb5a5f-d6f6-40f4-836e-b1f33c3dba13"",
+                    ""id"": ""97e103bb-d2c2-4385-a828-823330cb96c4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -124,72 +124,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""1D Axis"",
-                    ""id"": ""895c5da5-80af-4d1e-9ac3-641dea24b862"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Yaw"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""8c19072c-6a1c-4e50-9bb1-bac9c9143ced"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Yaw"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""23e0c8d6-d90b-4540-aaa1-e65b5352d09c"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Yaw"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""e85187ec-994d-49d7-93af-d7a318d8e2b7"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Yaw"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""bd7bdf58-6ee1-47d6-816b-93e360267757"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Yaw"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""a3af61ec-9653-441a-af34-524105b8c3bf"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Yaw"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""1D Axis"",
                     ""id"": ""d63d0bca-67e0-4d26-921a-dc58edc6dc8f"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -202,7 +136,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""e76efb01-e92d-48b7-9f23-69174825cff6"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -213,7 +147,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""8f8aabcd-0aae-40ef-82f3-c9320eb7045e"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -235,7 +169,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""351e1a18-6280-44c1-a207-47466dbea2c0"",
-                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -246,11 +180,77 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""8ff077cc-48fb-4950-93b8-3c981e7bf04f"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""895c5da5-80af-4d1e-9ac3-641dea24b862"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Yaw"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""8c19072c-6a1c-4e50-9bb1-bac9c9143ced"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Yaw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""23e0c8d6-d90b-4540-aaa1-e65b5352d09c"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Yaw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""e85187ec-994d-49d7-93af-d7a318d8e2b7"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Yaw"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""bd7bdf58-6ee1-47d6-816b-93e360267757"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Yaw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""a3af61ec-9653-441a-af34-524105b8c3bf"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Yaw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -301,8 +301,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // Spacecraft
         m_Spacecraft = asset.FindActionMap("Spacecraft", throwIfNotFound: true);
         m_Spacecraft_Pitch = m_Spacecraft.FindAction("Pitch", throwIfNotFound: true);
-        m_Spacecraft_Roll = m_Spacecraft.FindAction("Roll", throwIfNotFound: true);
         m_Spacecraft_Yaw = m_Spacecraft.FindAction("Yaw", throwIfNotFound: true);
+        m_Spacecraft_Roll = m_Spacecraft.FindAction("Roll", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Look = m_Camera.FindAction("Look", throwIfNotFound: true);
@@ -368,15 +368,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Spacecraft;
     private List<ISpacecraftActions> m_SpacecraftActionsCallbackInterfaces = new List<ISpacecraftActions>();
     private readonly InputAction m_Spacecraft_Pitch;
-    private readonly InputAction m_Spacecraft_Roll;
     private readonly InputAction m_Spacecraft_Yaw;
+    private readonly InputAction m_Spacecraft_Roll;
     public struct SpacecraftActions
     {
         private @Controls m_Wrapper;
         public SpacecraftActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Pitch => m_Wrapper.m_Spacecraft_Pitch;
-        public InputAction @Roll => m_Wrapper.m_Spacecraft_Roll;
         public InputAction @Yaw => m_Wrapper.m_Spacecraft_Yaw;
+        public InputAction @Roll => m_Wrapper.m_Spacecraft_Roll;
         public InputActionMap Get() { return m_Wrapper.m_Spacecraft; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -389,12 +389,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Pitch.started += instance.OnPitch;
             @Pitch.performed += instance.OnPitch;
             @Pitch.canceled += instance.OnPitch;
-            @Roll.started += instance.OnRoll;
-            @Roll.performed += instance.OnRoll;
-            @Roll.canceled += instance.OnRoll;
             @Yaw.started += instance.OnYaw;
             @Yaw.performed += instance.OnYaw;
             @Yaw.canceled += instance.OnYaw;
+            @Roll.started += instance.OnRoll;
+            @Roll.performed += instance.OnRoll;
+            @Roll.canceled += instance.OnRoll;
         }
 
         private void UnregisterCallbacks(ISpacecraftActions instance)
@@ -402,12 +402,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Pitch.started -= instance.OnPitch;
             @Pitch.performed -= instance.OnPitch;
             @Pitch.canceled -= instance.OnPitch;
-            @Roll.started -= instance.OnRoll;
-            @Roll.performed -= instance.OnRoll;
-            @Roll.canceled -= instance.OnRoll;
             @Yaw.started -= instance.OnYaw;
             @Yaw.performed -= instance.OnYaw;
             @Yaw.canceled -= instance.OnYaw;
+            @Roll.started -= instance.OnRoll;
+            @Roll.performed -= instance.OnRoll;
+            @Roll.canceled -= instance.OnRoll;
         }
 
         public void RemoveCallbacks(ISpacecraftActions instance)
@@ -474,8 +474,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface ISpacecraftActions
     {
         void OnPitch(InputAction.CallbackContext context);
-        void OnRoll(InputAction.CallbackContext context);
         void OnYaw(InputAction.CallbackContext context);
+        void OnRoll(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {
