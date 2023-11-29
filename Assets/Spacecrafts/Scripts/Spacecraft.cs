@@ -3,16 +3,32 @@ using UnityEngine.InputSystem;
 
 public class Spacecraft : MonoBehaviour
 {
+    [SerializeField] MainEngine mainEngine;
+
     [SerializeField] AxisThrusters pitchThrusters;
     [SerializeField] AxisThrusters yawThrusters;
     [SerializeField] AxisThrusters rollThrusters;
 
     Rigidbody rb;
+    
 
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        Debug.Log(rb.velocity.magnitude);
+    }
+
+    public void OnMainThrust(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            mainEngine.Toggle();
+        }
     }
 
     void Rotate(AxisThrusters thrusters, float rotation)
@@ -66,5 +82,6 @@ public class Spacecraft : MonoBehaviour
         AddForces(pitchThrusters);
         AddForces(yawThrusters);
         AddForces(rollThrusters);
+        rb.AddForceAtPosition(mainEngine.GetForce(), mainEngine.GetPosition(), ForceMode.Impulse);
     }
 }

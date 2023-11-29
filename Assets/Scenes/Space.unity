@@ -501,7 +501,7 @@ MonoBehaviour:
   m_RollDamping: 0
   m_AngularDamping: 0
   m_Heading:
-    m_Definition: 2
+    m_Definition: 3
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
@@ -646,7 +646,7 @@ MonoBehaviour:
   m_RollDamping: 0
   m_AngularDamping: 0
   m_Heading:
-    m_Definition: 2
+    m_Definition: 3
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
@@ -989,7 +989,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437625255}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -1e-45, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1108,6 +1108,54 @@ Transform:
   - {fileID: 2086335131}
   m_Father: {fileID: 1461642353}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &768793984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 768793985}
+  - component: {fileID: 768793986}
+  m_Layer: 0
+  m_Name: MainEngine
+  m_TagString: Untagged
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &768793985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768793984}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.7556}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5814907527489113727}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &768793986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768793984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9963239d1876e28459f5f0769beb84ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fuel: 0
+  isFiring: 0
+  maxThrust: 100
+  thrust: 0
 --- !u!1001 &776539730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1579,7 +1627,7 @@ GameObject:
   - component: {fileID: 1461642352}
   - component: {fileID: 1461642354}
   m_Layer: 0
-  m_Name: FreeLookCamera
+  m_Name: LookCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1667,7 +1715,7 @@ MonoBehaviour:
       m_LegacyHeadingDefinition: -1
       m_LegacyVelocityFilterStrength: -1
   m_Heading:
-    m_Definition: 2
+    m_Definition: 3
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
@@ -2278,7 +2326,7 @@ MonoBehaviour:
   m_RollDamping: 0
   m_AngularDamping: 0
   m_Heading:
-    m_Definition: 2
+    m_Definition: 3
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
@@ -2472,6 +2520,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 419658914}
+  - {fileID: 768793985}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8023272815329280403
@@ -2494,6 +2543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90cdc5ee9020694990093cc6023faa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainEngine: {fileID: 768793986}
   pitchThrusters:
     negative:
     - {fileID: 356797954}
@@ -2501,13 +2551,6 @@ MonoBehaviour:
     positive:
     - {fileID: 1277589254}
     - {fileID: 944236087}
-  rollThrusters:
-    negative:
-    - {fileID: 212837164}
-    - {fileID: 75902279}
-    positive:
-    - {fileID: 1602463486}
-    - {fileID: 1392143506}
   yawThrusters:
     negative:
     - {fileID: 1454037578}
@@ -2515,6 +2558,13 @@ MonoBehaviour:
     positive:
     - {fileID: 776539732}
     - {fileID: 1152943241}
+  rollThrusters:
+    negative:
+    - {fileID: 212837164}
+    - {fileID: 75902279}
+    positive:
+    - {fileID: 1602463486}
+    - {fileID: 1392143506}
 --- !u!54 &8023272815329280405
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2539,7 +2589,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &8023272815329280406
@@ -2620,6 +2670,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: e7f55e2a-51b0-403d-842a-eb448a4289f9
     m_ActionName: Camera/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8023272815329280404}
+        m_TargetAssemblyTypeName: Spacecraft, Assembly-CSharp
+        m_MethodName: OnMainThrust
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 23605c31-de96-404f-8ad0-890299ace2fd
+    m_ActionName: Spacecraft/MainThrust[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Spacecraft

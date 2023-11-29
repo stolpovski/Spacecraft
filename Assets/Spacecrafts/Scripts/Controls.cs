@@ -53,6 +53,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MainThrust"",
+                    ""type"": ""Button"",
+                    ""id"": ""23605c31-de96-404f-8ad0-890299ace2fd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -253,6 +262,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Yaw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab68b14f-bf6e-4522-9ab9-889afef39f78"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MainThrust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -303,6 +323,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Spacecraft_Pitch = m_Spacecraft.FindAction("Pitch", throwIfNotFound: true);
         m_Spacecraft_Yaw = m_Spacecraft.FindAction("Yaw", throwIfNotFound: true);
         m_Spacecraft_Roll = m_Spacecraft.FindAction("Roll", throwIfNotFound: true);
+        m_Spacecraft_MainThrust = m_Spacecraft.FindAction("MainThrust", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Look = m_Camera.FindAction("Look", throwIfNotFound: true);
@@ -370,6 +391,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Spacecraft_Pitch;
     private readonly InputAction m_Spacecraft_Yaw;
     private readonly InputAction m_Spacecraft_Roll;
+    private readonly InputAction m_Spacecraft_MainThrust;
     public struct SpacecraftActions
     {
         private @Controls m_Wrapper;
@@ -377,6 +399,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Pitch => m_Wrapper.m_Spacecraft_Pitch;
         public InputAction @Yaw => m_Wrapper.m_Spacecraft_Yaw;
         public InputAction @Roll => m_Wrapper.m_Spacecraft_Roll;
+        public InputAction @MainThrust => m_Wrapper.m_Spacecraft_MainThrust;
         public InputActionMap Get() { return m_Wrapper.m_Spacecraft; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -395,6 +418,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Roll.started += instance.OnRoll;
             @Roll.performed += instance.OnRoll;
             @Roll.canceled += instance.OnRoll;
+            @MainThrust.started += instance.OnMainThrust;
+            @MainThrust.performed += instance.OnMainThrust;
+            @MainThrust.canceled += instance.OnMainThrust;
         }
 
         private void UnregisterCallbacks(ISpacecraftActions instance)
@@ -408,6 +434,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Roll.started -= instance.OnRoll;
             @Roll.performed -= instance.OnRoll;
             @Roll.canceled -= instance.OnRoll;
+            @MainThrust.started -= instance.OnMainThrust;
+            @MainThrust.performed -= instance.OnMainThrust;
+            @MainThrust.canceled -= instance.OnMainThrust;
         }
 
         public void RemoveCallbacks(ISpacecraftActions instance)
@@ -476,6 +505,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnPitch(InputAction.CallbackContext context);
         void OnYaw(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
+        void OnMainThrust(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {
