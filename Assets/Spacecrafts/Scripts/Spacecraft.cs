@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 public class Spacecraft : MonoBehaviour
 {
     [SerializeField] AxisThrusters pitchThrusters;
-    [SerializeField] AxisThrusters rollThrusters;
     [SerializeField] AxisThrusters yawThrusters;
-    
+    [SerializeField] AxisThrusters rollThrusters;
+
     Rigidbody rb;
 
     void Awake()
@@ -38,14 +38,14 @@ public class Spacecraft : MonoBehaviour
         Rotate(pitchThrusters, context.ReadValue<float>());
     }
 
-    public void OnRoll(InputAction.CallbackContext context)
-    {
-        Rotate(rollThrusters, context.ReadValue<float>());
-    }
-
     public void OnYaw(InputAction.CallbackContext context)
     {
         Rotate(yawThrusters, context.ReadValue<float>());
+    }
+
+    public void OnRoll(InputAction.CallbackContext context)
+    {
+        Rotate(rollThrusters, context.ReadValue<float>());
     }
 
     void AddForces(AxisThrusters thrusters)
@@ -64,7 +64,7 @@ public class Spacecraft : MonoBehaviour
     void FixedUpdate()
     {
         AddForces(pitchThrusters);
-        AddForces(rollThrusters);
         AddForces(yawThrusters);
+        AddForces(rollThrusters);
     }
 }

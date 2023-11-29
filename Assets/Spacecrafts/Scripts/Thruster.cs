@@ -35,6 +35,7 @@ public class Thruster : MonoBehaviour
     
     public void TurnOn()
     {
+        Debug.Log(gameObject.name + "_ON");
         vfx.Play();
         sfx.Play();
         isRunning = true;
@@ -43,6 +44,7 @@ public class Thruster : MonoBehaviour
 
     public void TurnOff()
     {
+        Debug.Log(gameObject.name + "_OFF");
         vfx.Stop();
         vfx.Clear();
         sfx.Stop();
