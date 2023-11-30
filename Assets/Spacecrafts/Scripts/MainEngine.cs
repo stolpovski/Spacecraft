@@ -1,42 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MainEngine : MonoBehaviour
+public class MainEngine : Engine
 {
     public float fuel;
-    public bool isFiring;
     public float maxThrust = 100f;
-    public float thrust;
 
-    public Vector3 GetForce()
+    public override void TurnOn()
     {
-        return transform.rotation * Vector3.back * thrust;
+        IsRunning = true;
+        force = maxThrust;
     }
 
-    public Vector3 GetPosition()
+    public override void TurnOff()
     {
-        return transform.position;
-    }
-
-    public void TurnOn()
-    {
-        isFiring = true;
-        thrust = maxThrust;
-    }
-
-    public void TurnOff()
-    {
-        isFiring = false;
-        thrust = 0;
+        IsRunning = false;
+        force = 0;
     }
 
     public void Toggle()
     {
-        if (isFiring)
+        if (IsRunning)
         {
             TurnOff();
-        } else
+        }
+        else
         {
             TurnOn();
         }

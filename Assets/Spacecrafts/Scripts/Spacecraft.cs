@@ -10,25 +10,11 @@ public class Spacecraft : MonoBehaviour
     [SerializeField] AxisThrusters rollThrusters;
 
     Rigidbody rb;
-    
 
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
-    }
-
-    private void Update()
-    {
-        Debug.Log(rb.velocity.magnitude);
-    }
-
-    public void OnMainThrust(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            mainEngine.Toggle();
-        }
     }
 
     void Rotate(AxisThrusters thrusters, float rotation)
@@ -49,6 +35,14 @@ public class Spacecraft : MonoBehaviour
         }
     }
 
+    public void OnMainThrust(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            mainEngine.Toggle();
+        }
+    }
+
     public void OnPitch(InputAction.CallbackContext context)
     {
         Rotate(pitchThrusters, context.ReadValue<float>());
@@ -64,24 +58,31 @@ public class Spacecraft : MonoBehaviour
         Rotate(rollThrusters, context.ReadValue<float>());
     }
 
+    void AddForce(IThrustable engine)
+    {
+        rb.AddForceAtPosition(engine.Force, engine.Position, ForceMode.Impulse);
+    }
+
     void AddForces(AxisThrusters thrusters)
     {
         foreach (var thruster in thrusters.positive)
         {
-            rb.AddForceAtPosition(thruster.GetForce(), thruster.GetPosition(), ForceMode.Impulse);
+            AddForce(thruster);
         }
 
         foreach (var thruster in thrusters.negative)
         {
-            rb.AddForceAtPosition(thruster.GetForce(), thruster.GetPosition(), ForceMode.Impulse);
+            AddForce(thruster);
         }
     }
+
+    
 
     void FixedUpdate()
     {
         AddForces(pitchThrusters);
         AddForces(yawThrusters);
         AddForces(rollThrusters);
-        rb.AddForceAtPosition(mainEngine.GetForce(), mainEngine.GetPosition(), ForceMode.Impulse);
+        AddForce(mainEngine);
     }
 }

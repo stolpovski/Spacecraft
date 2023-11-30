@@ -1,13 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-public class Thruster : MonoBehaviour
+public class Thruster : Engine
 {
-    [SerializeField] float force;
     [SerializeField] float maxForce = 0.01f;
     [SerializeField] float deltaForce = 0.0001f;
-
-    bool isRunning;
     
     ParticleSystem vfx;
     AudioSource sfx;
@@ -18,43 +15,26 @@ public class Thruster : MonoBehaviour
         sfx = GetComponent<AudioSource>();
     }
 
-    public bool IsRunning()
+    public override void TurnOn()
     {
-        return isRunning;
-    }
-
-    public Vector3 GetForce()
-    {
-        return transform.rotation * Vector3.back * force;
-    }
-
-    public Vector3 GetPosition()
-    {
-        return transform.position;
-    }
-    
-    public void TurnOn()
-    {
-        Debug.Log(gameObject.name + "_ON");
         vfx.Play();
         sfx.Play();
-        isRunning = true;
+        IsRunning = true;
         StartCoroutine(ForceUp());
     }
 
-    public void TurnOff()
+    public override void TurnOff()
     {
-        Debug.Log(gameObject.name + "_OFF");
         vfx.Stop();
         vfx.Clear();
         sfx.Stop();
-        isRunning = false;
+        IsRunning = false;
         StartCoroutine(ForceDown());
     }
 
     IEnumerator ForceUp()
     {
-        while (isRunning && force < maxForce)
+        while (IsRunning && force < maxForce)
         {
             force += deltaForce;
             yield return null;
@@ -63,7 +43,7 @@ public class Thruster : MonoBehaviour
 
     IEnumerator ForceDown()
     {
-        while (!isRunning && force > 0)
+        while (!IsRunning && force > 0)
         {
             force -= deltaForce;
             yield return null;

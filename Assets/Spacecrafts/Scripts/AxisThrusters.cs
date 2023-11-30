@@ -26,7 +26,7 @@ public class AxisThrusters
     {
         foreach (Thruster thruster in positive)
         {
-            if (thruster.IsRunning())
+            if (thruster.IsRunning)
             {
                 thruster.TurnOff();
             }
@@ -34,7 +34,7 @@ public class AxisThrusters
 
         foreach (Thruster thruster in negative)
         {
-            if (thruster.IsRunning())
+            if (thruster.IsRunning)
             {
                 thruster.TurnOff();
             }
