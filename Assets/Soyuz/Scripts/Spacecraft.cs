@@ -31,7 +31,7 @@ public class Spacecraft : MonoBehaviour
 
         if (rotation == 0)
         {
-            thrusters.TurnOfRunningThrusters();
+            thrusters.TurnOffRunningThrusters();
         }
     }
 
@@ -65,18 +65,16 @@ public class Spacecraft : MonoBehaviour
 
     void AddForces(AxisThrusters thrusters)
     {
-        foreach (var thruster in thrusters.positive)
+        foreach (Thruster thruster in thrusters.positive)
         {
             AddForce(thruster);
         }
 
-        foreach (var thruster in thrusters.negative)
+        foreach (Thruster thruster in thrusters.negative)
         {
             AddForce(thruster);
         }
     }
-
-    
 
     void FixedUpdate()
     {

@@ -22,7 +22,7 @@ public class AxisThrusters
         }
     }
 
-    public void TurnOfRunningThrusters()
+    public void TurnOffRunningThrusters()
     {
         foreach (Thruster thruster in positive)
         {
